@@ -16,10 +16,16 @@
     <p>Ingrese el telefono: </p>
     <input type="text" th:field="*{phone}" placeholder="Telefono"/>
     <br />
+    <p>Seleccione categoria: </p>
+
     <select th:field="*{category}">
-        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+        <option th:each="category : ${categories}"
+                th:value="${category.id}"
+                th:text="${category.name}"></option>
     </select>
     <br/>
+    <p>Seleccione ciudad: </p>
+
     <select th:field="*{city}">
         <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
     </select>

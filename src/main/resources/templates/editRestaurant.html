@@ -9,33 +9,35 @@
 </head>
 <body>
 <h1>Editar un Restaurante</h1>
-<form action="/restaurant"  method="POST">
+<form action="/restaurant"  method="POST" enctype="multipart/form-data" th:object="${restaurant}">
     <input type="hidden" name="id" th:value="${restaurant.id}">
     <input type="hidden" name="score" th:value="${restaurant.score}">
     <p>Nombre: </p>
-    <textarea name="name" id="name" th:text="${restaurant.name}" cols="30" rows="3"> </textarea>
+    <input type="text" th:field="*{name}" placeholder="Nombre"/>
     <p>Direccion Principal: </p>
-    <textarea name ="direction" id="direction" th:text="${restaurant.direction}" cols="30" rows="3"></textarea>
+    <input type="text" th:field="*{direction}" placeholder="Direccion"/>
     <p>Telefono: </p>
-    <textarea name="phone" id="phone" th:text="${restaurant.phone}" cols="30" rows="3"> </textarea>
+    <input type="text" th:field="*{phone}" placeholder="Telefono"/>
     <br />
-    <select>
+    <p>Categoria: </p>
+
+    <select th:field="*{category}">
         <option th:each="category : ${categories}"
                 th:value="${category.id}"
-                th:text="${category.name}"
-                th:selected="(${category.id} == ${restaurant.category.id})"></option>
+                th:text="${category.name}"></option>
+    </select>
+    <br/>
+    <p>Ciudad: </p>
+
+    <select th:field="*{city}">
+        <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
     </select>
     <br />
-    <select>
-        <option th:each="city : ${cities}"
-                th:value="${city.id}"
-                th:text="${city.name}"
-                th:selected="(${city.id} == ${restaurant.city.id})"></option>
-    </select>
+    <img th:if="${(restaurant.foto)!=NULL}" th:src="${'/uploads/' + restaurant.foto}" th:alt="${restaurant.foto}" width="300" height="300">
     <br />
-    <img th:if="${#strings.length(restaurant.foto)>0}" th:src="${'/uploads/' + restaurant.foto}" th:alt="${restaurant.foto}" width="460" height="345">
-    <br />
-    <input type="submit" value="Guardar">
+    <input type="file" name="file" th:value="${restaurant.foto}"/>
+
+    <input type="submit" value="Guardar" >
 </form>
 </body>
 </html>

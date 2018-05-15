@@ -103,12 +103,12 @@ public class RestaurantController {
 
                 flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename +"'");
                 restaurant.setFoto(uniqueFilename);
-                restaurantService.saveRestaurant(restaurant);
+
             }catch (IOException e){
                 e.printStackTrace();
             }
         }
-
+        restaurantService.saveRestaurant(restaurant);
         return "redirect:/restaurants";
     }
 
