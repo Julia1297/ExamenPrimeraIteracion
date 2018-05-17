@@ -44,6 +44,7 @@ public class UserController {
     public String registration(@Valid User user, BindingResult bindingResult, Model model) {
         ///userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
+            model.addAttribute("cities",cityService.listAllCities());
             model.addAttribute(user);
             return "register";
         }
