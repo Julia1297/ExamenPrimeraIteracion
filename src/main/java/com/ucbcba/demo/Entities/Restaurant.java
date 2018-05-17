@@ -2,6 +2,7 @@ package com.ucbcba.demo.Entities;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -15,9 +16,11 @@ public class Restaurant {
     private Integer score = 0;
 
     @NotNull
+    @NotEmpty(message = "Ingrese nombre de restaurante")
     private String name;
 
     @NotNull
+    @NotEmpty(message = "Ingrese la dirección")
     private String direction;
 
     @ManyToOne
@@ -28,8 +31,15 @@ public class Restaurant {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @ManyToOne
+    @JoinColumn(name = "levelPrice_id")
+    private LevelPrice levelPrice;
+
+
     @NotNull
+    @NotEmpty(message = "Ingrese el telefono")
     private String phone;
+
 
     private String foto;
 
@@ -91,5 +101,13 @@ public class Restaurant {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public LevelPrice getLevelPrice() {
+        return levelPrice;
+    }
+
+    public void setLevelPrice(LevelPrice levelPrice) {
+        this.levelPrice = levelPrice;
     }
 }

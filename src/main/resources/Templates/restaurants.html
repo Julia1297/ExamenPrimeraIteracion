@@ -23,8 +23,11 @@
             Score
         </th>
         <th>
+            Nivel precio
+        </th>
+        <th>
             Imagen
-        </th>>
+        </th>
         <th>
             Opciones
         </th>
@@ -36,7 +39,8 @@
         <td th:text="${restaurant.direction}"> </td>
         <td th:text="${restaurant.phone}"> </td>
         <td th:text="${restaurant.score}"> </td>
-        <td> <img th:if="${(restaurant.foto)!=NULL}" th:src="${'/uploads/' + restaurant.foto}" th:alt="${restaurant.foto}" width="350" height="200"> </td>
+        <td th:text="${restaurant.levelPrice.descripcion}"> </td>
+        <td> <img th:if="${(restaurant.foto)!=NULL}" th:src="${'/uploads/' + restaurant.foto}" th:alt="${restaurant.foto}" width="300" height="300"> </td>
         <td>
             <a th:href="${'/showRestaurant/' + restaurant.id}">Ver</a>
             <a th:class="${actualRole}" th:href="${'/editRestaurant/' + restaurant.id}">Editar</a>
@@ -44,5 +48,7 @@
         </td>
     </tr>
 </table>
+<h4 size="10"><a  href="/newRestaurant">Nuevo Restaurante</a></h4>
+
 </body>
 </html>

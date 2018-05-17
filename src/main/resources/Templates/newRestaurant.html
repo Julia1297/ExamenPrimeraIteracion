@@ -29,6 +29,11 @@
     <select th:field="*{city}">
         <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
     </select>
+
+    <p>Seleccione nivel precio: </p>
+    <select th:field="*{levelPrice}">
+        <option th:each="levelPrice : ${levels}" th:value="${levelPrice.id}" th:text="${levelPrice.descripcion}"></option>
+    </select>
     <br />
     <input type="file" name="file"/>
     <br/>

@@ -3,10 +3,7 @@ package com.ucbcba.demo.Controllers;
 import com.ucbcba.demo.Entities.Restaurant;
 
 import com.ucbcba.demo.Entities.User;
-import com.ucbcba.demo.services.CategoryService;
-import com.ucbcba.demo.services.CityService;
-import com.ucbcba.demo.services.RestaurantService;
-import com.ucbcba.demo.services.UserService;
+import com.ucbcba.demo.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +27,7 @@ public class RestaurantController {
     private CityService cityService;
     private CategoryService categoryService;
     private UserService userService;
+    private LevelPriceService levelPriceService;
     private Authentication auth;
     private String username;
 
@@ -50,6 +48,11 @@ public class RestaurantController {
     public void setCategoryService(CategoryService categoryService){
         this.categoryService = categoryService;
     }
+    @Autowired
+    public void setLevelPriceService(LevelPriceService levelPriceService){
+        this.levelPriceService = levelPriceService;
+    }
+
 
     @RequestMapping("/")
     String home(Model model) {
@@ -63,6 +66,7 @@ public class RestaurantController {
     String newRestaurant(Model model) {
         model.addAttribute("restaurant",new Restaurant());
         model.addAttribute( "categories", categoryService.listAllCategories());
+        model.addAttribute( "levels", levelPriceService.listAllLevels());
         model.addAttribute("cities", cityService.listAllCities());
         return "newRestaurant";
     }
@@ -117,6 +121,7 @@ public class RestaurantController {
         model.addAttribute("restaurant", restaurantService.getRestaurant(id));
         model.addAttribute("categories", categoryService.listAllCategories());
         model.addAttribute("cities", cityService.listAllCities());
+        model.addAttribute( "levels", levelPriceService.listAllLevels());
         return "editRestaurant";
     }
 

@@ -28,11 +28,18 @@
     </select>
     <br/>
     <p>Ciudad: </p>
-
     <select th:field="*{city}">
         <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>
     </select>
     <br />
+    <p>Nivel precio: </p>
+    <select th:field="*{levelPrice}">
+        <option th:each="levelPrice : ${levels}"
+                th:value="${levelPrice.id}"
+                th:text="${levelPrice.descripcion}"></option>
+    </select>
+    <br />
+
     <img th:if="${(restaurant.foto)!=NULL}" th:src="${'/uploads/' + restaurant.foto}" th:alt="${restaurant.foto}" width="300" height="300">
     <br />
     <input type="file" name="file" th:value="${restaurant.foto}"/>
